@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(process.env.NODE_ENV === 'development' ? 'mongodb://localhost/test' : process.env.MONGODB_URI);
 
 var app = express();
 
