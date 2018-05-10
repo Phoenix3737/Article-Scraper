@@ -1,0 +1,17 @@
+.article {
+    text-decoration: none;
+    height: 100px;
+    background-color: #eee;
+    padding: 10px;
+    border: 1px solid  #555;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.article .author {
+    font-size: 14px;
+}
+
+.article .headline {
+    font-size: 18px;
+}
