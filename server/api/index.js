@@ -32,29 +32,27 @@ router.get("/scrape", function (req, res) {
                 author: $(".c-byline__item a", this).text(),
                 url: $(".c-entry-box--compact__image-wrapper", this).attr('href')
             }
+            
             result.push(articleData);
-            Article.findOne({
-                    headline
+            
+            Article.findOne({ headline })
+                .then(function(article) {
+                   
+                    return Article.create(articleData)
+                        .then(function () {
+                            console.log("Article Created", article);
+                            
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 })
-                .then(function (article) {
-                    if (!article) {
-                        return Article.create(articleData)
-                            .then(function () {
-                                console.log("Article Created", article);
-                            })
-
-                    }
-                })
-                .catch(function (err) {
-                    console.log(err);
+                .catch(function(err) {
+                    console.log(err)
                 })
 
-
-
-            // console.log(title);
         })
-        res.json(result)
-
+        res.json(result);
     });
 });
 
